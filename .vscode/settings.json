@@ -1,0 +1,9 @@
+{
+  "eslint.enable": true,
+  "jshint.enable": false,
+  "jscs.enable": false,
+  "tslint.enable": false,
+  "editor.formatOnSave": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.alwaysShowStatus": true
+}

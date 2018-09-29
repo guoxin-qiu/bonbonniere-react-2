@@ -1,0 +1,36 @@
+{
+  "posts": [{
+    "id": 1,
+    "title": "json-server",
+    "author": "typicode"
+  }, {
+    "id": 2,
+    "title": ".net",
+    "author": "qq"
+  }],
+  "comments": [{
+    "id": 1,
+    "body": "some comment",
+    "postId": 1
+  }],
+  "profile": {
+    "name": "typicode"
+  },
+  "samples": [{
+      "id": 1,
+      "data": "11111"
+    },
+    {
+      "id": 5,
+      "data": "55555"
+    },
+    {
+      "id": 7,
+      "data": "77777"
+    },
+    {
+      "id": 9,
+      "data": "99999"
+    }
+  ]
+}

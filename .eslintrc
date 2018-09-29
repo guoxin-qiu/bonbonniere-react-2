@@ -1,0 +1,8 @@
+{
+  "extends": ["react-app", "airbnb", "plugin:prettier/recommended"],
+  "rules": {
+    "no-alert": "off",
+    "no-console": "off",
+    "jsx-a11y/href-no-hash": "off"
+  }
+}
