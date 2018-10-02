@@ -27,6 +27,7 @@ npm i concurrently -D
 ## Antd Reference
 [ant-design](https://ant.design/index-cn)
 [ant-theme](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less)
+[ant-demo](https://github.com/zuiidea/antd-admin)
 
 ## WeChat Reference
 [WeChat Authorization](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842)
