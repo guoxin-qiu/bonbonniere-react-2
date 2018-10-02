@@ -4,15 +4,9 @@
 ```
 npm init react-app bonbonniere-react
 cd bonbonniere-react
-npm i react-router-dom --S
-npm i lodash -S
-npm i prop-types -S
-npm i redux -S
-npm i redux-thunk -S
-npm i react-redux -S
-npm i antd --S
+npm i react-router-dom prop-types --S
+npm i redux react-redux redux-thunk -S
 npm i babel-polyfill -S
-npm i react-quill -S
 npm start
 ```
 
@@ -25,5 +19,15 @@ npm i concurrently -D
 ```
 
 
-## Reference
+## React Reference
 [create-react-app](https://github.com/facebook/create-react-app)
+[airbnb javascript](https://github.com/airbnb/javascript)
+[react-router tutorial](https://reacttraining.com/react-router/web/guides/philosophy)
+
+## Antd Reference
+[ant-design](https://ant.design/index-cn)
+
+## WeChat Reference
+[WeChat Authorization](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842)
+[WeChat API Debug](https://mp.weixin.qq.com/debug/cgi-bin/apiinfo)
+

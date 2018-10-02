@@ -1,24 +1,86 @@
 import React from 'react';
-import { Layout, Icon } from 'antd';
-import Logo from '../../constants/images/logo.jpg';
+import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
+import { Layout, Icon, Menu, Badge } from 'antd';
+import * as AppConstant from '../../constants/appConstant';
+import history from '../../routes/history';
 
 const { Header } = Layout;
+const { SubMenu } = Menu;
 
-const AppHeader = () => (
-  <Header>
-    <div className="top-banner">
-      <div id="logo">
-        <a style={{ float: 'left' }} href="/">
-          <img src={Logo} alt="" style={{ width: '226px' }} />
-        </a>
-        <span className="app-name">会议助手管理后台</span>
-        <div className="welcome">
-          <Icon type="user" />
-          &nbsp;&nbsp;欢迎:&nbsp;&nbsp;denis&nbsp;&nbsp;&nbsp;&nbsp;
-        </div>
-      </div>
-    </div>
-  </Header>
-);
+class AppHeader extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      collapsed: props.collapsed
+    };
+    // this.logout = this.logout.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.onCollapse(nextProps.collapsed);
+  }
+
+  onCollapse = collapsed => {
+    this.setState({ collapsed });
+  };
+
+  logout = () => {
+    localStorage.removeItem(AppConstant.USER_INFO_STORAGE_KEY);
+    history.push('/login');
+  };
+
+  render() {
+    const { collapsed } = this.state;
+    const { toggle, username } = this.props;
+    const userTitle = (
+      <span>
+        <Icon type="user" style={{ fontSize: 16, color: '#1DA57A' }} />
+        {username}
+      </span>
+    );
+
+    return (
+      <Header style={{ background: '#fff', padding: 0 }} className="header">
+        <Icon
+          className="trigger"
+          type={collapsed ? 'menu-unfold' : 'menu-fold'}
+          onClick={toggle}
+        />
+        <span className="app-name">会议管理后台</span>
+        <Menu mode="horizontal" style={{ lineHeight: '64px', float: 'right' }}>
+          <Menu.Item key="schedule">
+            <Link to="/app/todos">
+              <Badge
+                count={3}
+                overflowCount={99}
+                style={{ height: '15px', lineHeight: '15px' }}
+              >
+                <Icon type="bell" style={{ fontSize: 16, color: '#1DA57A' }} />
+              </Badge>
+            </Link>
+          </Menu.Item>
+          <SubMenu title={userTitle}>
+            <Menu.Item
+              key="logout"
+              style={{ textAlign: 'center' }}
+              className="logout"
+            >
+              <div onClick={this.logout} role="presentation">
+                logout
+              </div>
+            </Menu.Item>
+          </SubMenu>
+        </Menu>
+      </Header>
+    );
+  }
+}
+
+AppHeader.propTypes = {
+  collapsed: PropTypes.bool.isRequired,
+  toggle: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired
+};
 
 export default AppHeader;

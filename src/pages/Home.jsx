@@ -6,7 +6,7 @@ const Home = () => (
     <span>Welcome to Home Page</span>
     <br />
     <br />
-    <Link to="/counter">Go to Counter</Link>
+    <Link to="/app/travel/counter">Go to Counter</Link>
   </div>
 );
 
