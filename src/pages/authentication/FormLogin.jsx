@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 import RouterProps from 'react-router-prop-types';
 import { Form, Icon, Input, Button, message, Spin } from 'antd';
 import * as AppConstant from '../../constants/appConstant';
-import '../../styles/login.css';
+import '../../styles/login.less';
 
 const FormItem = Form.Item;
 const users = [

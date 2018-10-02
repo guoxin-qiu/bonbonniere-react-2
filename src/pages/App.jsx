@@ -6,7 +6,7 @@ import * as AppConstant from '../constants/appConstant';
 import AppSider from '../components/layout/AppSider';
 import AppHeader from '../components/layout/AppHeader';
 import NotFound from '../components/common/404';
-import '../styles/app.css';
+import '../styles/app.less';
 import Home from './Home';
 import Counter from './Counter';
 

@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import BaseRouter from './routes';
 
-import './index.css';
+import './index.less';
 
 const store = configureStore();
 const rootElement = document.getElementById('root');
