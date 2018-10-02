@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import RouterProps from 'react-router-prop-types';
 import { Layout } from 'antd';
 import * as AppConstant from '../constants/appConstant';
+import * as Url from '../constants/Url';
 import AppSider from '../components/layout/AppSider';
 import AppHeader from '../components/layout/AppHeader';
 import NotFound from '../components/common/404';
@@ -47,7 +48,7 @@ class App extends React.Component {
     const { location } = this.props;
 
     if (localStorage.getItem(AppConstant.USER_INFO_STORAGE_KEY) === null) {
-      return <Redirect to="/login" />;
+      return <Redirect to={Url.LOGIN} />;
     }
     const name =
       location.state === undefined
@@ -66,8 +67,8 @@ class App extends React.Component {
           />
           <Content style={{ margin: '0 16px' }}>
             <Switch>
-              <Route exact path="/app" component={Home} />
-              <Route path="/app/travel/counter" component={Counter} />
+              <Route exact path={Url.APP} component={Home} />
+              <Route path={Url.TRAVEL_COUNTER} component={Counter} />
               <Route component={NotFound} />
             </Switch>
           </Content>
