@@ -20,6 +20,7 @@ npm i concurrently -D
 
 
 ## React Reference
+[reactjs](https://reactjs.org/docs/getting-started.html)
 [create-react-app](https://github.com/facebook/create-react-app)
 [airbnb javascript](https://github.com/airbnb/javascript)
 [react-router tutorial](https://reacttraining.com/react-router/web/guides/philosophy)
