@@ -34,3 +34,7 @@ npm i concurrently -D
 * [WeChat Authorization](https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842)
 * [WeChat API Debug](https://mp.weixin.qq.com/debug/cgi-bin/apiinfo)
 
+## Refernce
+```
+git config --global core.autocrlf false
+```
