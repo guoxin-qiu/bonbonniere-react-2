@@ -5,17 +5,32 @@ const dbJson = require('./db.json');
 
 const router = jsonServer.router(dbJson);
 const middlewares = jsonServer.defaults();
-const isAuthorized = req => req !== null;
 
 server.use(middlewares);
 server.use((req, res, next) => {
   setTimeout(() => {
-    if (isAuthorized(req)) {
-      next();
-    } else {
-      res.sendStatus(401);
-    }
-  }, Math.random() * 1000);
+    next();
+    // const expireTime = 1000 * 60;
+    // res.header('Access-Control-Expose-Headers', 'access-token');
+
+    // const now = Date.now();
+    // let unauthorized = true;
+    // const token = req.headers['access-token'];
+
+    // if (token) {
+    //   const expired = now - token > expireTime;
+    //   if (!expired) {
+    //     unauthorized = false;
+    //     res.header('access-token', now);
+    //   }
+    // }
+
+    // if (unauthorized) {
+    //   res.sendStatus(401);
+    // } else {
+    //   next();
+    // }
+  }, Math.random() * 3000);
 });
 
 server.use('/api/1', router);

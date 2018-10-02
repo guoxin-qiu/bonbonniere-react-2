@@ -1,3 +1,6 @@
+import { API } from '../constants';
+import ajax from '../utils/ajax';
+
 const incrementCountType = 'INCREMENT_COUNT';
 const decrementCountType = 'DECREMENT_COUNT';
 const requestDataFromApiType = 'REQUEST_DATA_FROM_API';
@@ -31,27 +34,28 @@ export const actionCreators = {
       }
     });
 
-    const url = `http://localhost:3002/api/1/samples/${dataIndex}`;
-    try {
-      const response = await fetch(url);
-      const result = await response.json();
-
-      dispatch({
-        type: receiveDataFromApiType,
-        payload: {
-          dataIndex,
-          result
-        }
+    ajax
+      .get(API.COUNTER, {
+        id: dataIndex
+      })
+      .then(res => {
+        dispatch({
+          type: receiveDataFromApiType,
+          payload: {
+            dataIndex,
+            result: res[0] || {}
+          }
+        });
+      })
+      .catch(() => {
+        dispatch({
+          type: receiveDataFromApiType,
+          payload: {
+            dataIndex,
+            result: {}
+          }
+        });
       });
-    } catch (error) {
-      dispatch({
-        type: receiveDataFromApiType,
-        payload: {
-          dataIndex,
-          result: {}
-        }
-      });
-    }
   }
 };
 

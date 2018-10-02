@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Layout, Icon, Menu, Badge } from 'antd';
-import * as AppConstant from '../../constants/appConstant';
+import auth from '../../utils/auth';
 import history from '../../routes/history';
 
 const { Header } = Layout;
@@ -14,7 +14,6 @@ class AppHeader extends React.Component {
     this.state = {
       collapsed: props.collapsed
     };
-    // this.logout = this.logout.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -26,7 +25,7 @@ class AppHeader extends React.Component {
   };
 
   logout = () => {
-    localStorage.removeItem(AppConstant.USER_INFO_STORAGE_KEY);
+    auth.removeAuthentication();
     history.push('/login');
   };
 

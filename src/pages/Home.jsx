@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as Url from '../constants/Url';
+import { URL } from '../constants';
 
 const Home = () => (
   <div>
     <span>Welcome to Home Page</span>
     <br />
     <br />
-    <Link to={Url.TRAVEL_COUNTER}>Go to Counter</Link>
+    <Link to={URL.TRAVEL_COUNTER}>Go to Counter</Link>
   </div>
 );
 

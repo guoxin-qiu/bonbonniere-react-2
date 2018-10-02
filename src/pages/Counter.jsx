@@ -2,12 +2,13 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
+import { Spin } from 'antd';
 import { actionCreators } from '../store/Counter';
 
 const Counter = props => {
   const {
     count,
+    isLoading,
     dataIndex,
     data,
     increment,
@@ -45,6 +46,7 @@ const Counter = props => {
 
       <br />
       <br />
+      {isLoading && <Spin size="large" className="loading" />}
       <span>{`dataIndex: ${dataIndex}, data is ${data.data}`}</span>
     </div>
   );
@@ -52,6 +54,7 @@ const Counter = props => {
 
 Counter.propTypes = {
   count: PropTypes.number.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   increment: PropTypes.func.isRequired,
   decrement: PropTypes.func.isRequired,
   getDataFromApi: PropTypes.func.isRequired,

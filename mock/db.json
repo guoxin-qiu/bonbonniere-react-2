@@ -1,4 +1,15 @@
 {
+  "users": [{
+      "username": "admin",
+      "password": "admin",
+      "token": "TSLDJF2P3EWNDCSS3"
+    },
+    {
+      "username": "denis",
+      "password": "denis",
+      "token": "DKSNDLCR2M3EDOJNMC"
+    }
+  ],
   "posts": [{
     "id": 1,
     "title": "json-server",

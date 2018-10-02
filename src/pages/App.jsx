@@ -2,8 +2,8 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import RouterProps from 'react-router-prop-types';
 import { Layout } from 'antd';
-import * as AppConstant from '../constants/appConstant';
-import * as Url from '../constants/Url';
+import { AppConstant, URL } from '../constants';
+import auth from '../utils/auth';
 import AppSider from '../components/layout/AppSider';
 import AppHeader from '../components/layout/AppHeader';
 import NotFound from '../components/common/404';
@@ -47,13 +47,12 @@ class App extends React.Component {
     const { collapsed } = this.state;
     const { location } = this.props;
 
-    if (localStorage.getItem(AppConstant.USER_INFO_STORAGE_KEY) === null) {
-      return <Redirect to={Url.LOGIN} />;
+    if (!auth.isAuthorized()) {
+      return <Redirect to={URL.LOGIN} />;
     }
     const name =
       location.state === undefined
-        ? JSON.parse(localStorage.getItem(AppConstant.USER_INFO_STORAGE_KEY))
-            .username
+        ? auth.getUsername()
         : location.state.username;
 
     return (
@@ -67,8 +66,8 @@ class App extends React.Component {
           />
           <Content style={{ margin: '0 16px' }}>
             <Switch>
-              <Route exact path={Url.APP} component={Home} />
-              <Route path={Url.TRAVEL_COUNTER} component={Counter} />
+              <Route exact path={URL.APP} component={Home} />
+              <Route path={URL.TRAVEL_COUNTER} component={Counter} />
               <Route component={NotFound} />
             </Switch>
           </Content>

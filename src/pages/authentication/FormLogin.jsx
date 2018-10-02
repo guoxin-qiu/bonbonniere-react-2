@@ -1,25 +1,13 @@
-import _ from 'lodash';
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import RouterProps from 'react-router-prop-types';
 import { Form, Icon, Input, Button, message, Spin } from 'antd';
-import * as AppConstant from '../../constants/appConstant';
+import { API, URL } from '../../constants';
+import ajax from '../../utils/ajax';
 import '../../styles/login.less';
+import auth from '../../utils/auth';
 
 const FormItem = Form.Item;
-const users = [
-  {
-    username: 'admin',
-    password: 'admin'
-  },
-  {
-    username: 'denis',
-    password: 'denis'
-  }
-];
-
-const matchUser = (username, pwd) =>
-  _.findIndex(users, u => u.username === username && u.password === pwd) >= 0;
 
 class LoginForm extends React.Component {
   state = {
@@ -30,21 +18,25 @@ class LoginForm extends React.Component {
     e.preventDefault();
     const { form, history } = this.props;
     form.validateFields((err, values) => {
+      const { username, password } = values;
       if (!err) {
-        console.log('Received values of form:', values);
-        if (matchUser(values.username, values.password)) {
-          this.setState({ isLoading: true });
-          localStorage.setItem(
-            AppConstant.USER_INFO_STORAGE_KEY,
-            JSON.stringify(values)
-          );
-          message.success('login successed.');
-          setTimeout(() => {
-            history.push({ pathname: '/app', state: values });
-          }, 4000);
-        } else {
-          message.error('incorrect username or password.');
-        }
+        ajax
+          .get(API.LOGIN, { username, password })
+          .then(res => {
+            console.log(res);
+            if (res && res.length > 0) {
+              const authInfo = res[0];
+              this.setState({ isLoading: true });
+              auth.setAuthentication(authInfo.username, authInfo.token);
+              message.success('login successed.');
+              setTimeout(() => {
+                history.push({ pathname: URL.APP, state: values });
+              }, 4000);
+            } else {
+              message.error('incorrect username or password.');
+            }
+          })
+          .catch(() => message.error('server error.'));
       }
     });
   };
@@ -79,6 +71,7 @@ class LoginForm extends React.Component {
                 <Input
                   prefix={<Icon type="lock" style={{ fontSize: 13 }} />}
                   placeholder="密码"
+                  type="password"
                 />
               )}
             </FormItem>
