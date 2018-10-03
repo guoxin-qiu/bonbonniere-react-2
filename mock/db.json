@@ -2,12 +2,14 @@
   "users": [{
       "username": "admin",
       "password": "admin",
-      "token": "TSLDJF2P3EWNDCSS3"
+      "token": "TSLDJF2P3EWNDCSS3",
+      "locale": "zh-CN"
     },
     {
       "username": "denis",
       "password": "denis",
-      "token": "DKSNDLCR2M3EDOJNMC"
+      "token": "DKSNDLCR2M3EDOJNMC",
+      "locale": "en-US"
     }
   ],
   "posts": [{

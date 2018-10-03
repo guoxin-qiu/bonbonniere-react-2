@@ -1,9 +1,12 @@
 import React from 'react';
+import { injectIntl, intlShape } from 'react-intl';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Layout, Icon, Menu, Badge } from 'antd';
 import auth from '../../utils/auth';
 import history from '../../routes/history';
+import SwitchLocale from './SwitchLocale';
+import AppLogout from './AppLogout';
 
 const { Header } = Layout;
 const { SubMenu } = Menu;
@@ -31,7 +34,8 @@ class AppHeader extends React.Component {
 
   render() {
     const { collapsed } = this.state;
-    const { toggle, username } = this.props;
+    const { intl, toggle, username } = this.props;
+    const { formatMessage } = intl;
     const userTitle = (
       <span>
         <Icon type="user" style={{ fontSize: 16, color: '#1DA57A' }} />
@@ -46,7 +50,13 @@ class AppHeader extends React.Component {
           type={collapsed ? 'menu-unfold' : 'menu-fold'}
           onClick={toggle}
         />
-        <span className="app-name">会议管理后台</span>
+        <span className="app-name">
+          {formatMessage({ id: 'app.header.title' })}
+        </span>
+        <div style={{ float: 'right', marginRight: '16px' }}>
+          <SwitchLocale />
+        </div>
+
         <Menu mode="horizontal" style={{ lineHeight: '64px', float: 'right' }}>
           <Menu.Item key="schedule">
             <Link to="/app/todos">
@@ -65,9 +75,7 @@ class AppHeader extends React.Component {
               style={{ textAlign: 'center' }}
               className="logout"
             >
-              <div onClick={this.logout} role="presentation">
-                logout
-              </div>
+              <AppLogout />
             </Menu.Item>
           </SubMenu>
         </Menu>
@@ -77,9 +85,10 @@ class AppHeader extends React.Component {
 }
 
 AppHeader.propTypes = {
+  intl: intlShape.isRequired,
   collapsed: PropTypes.bool.isRequired,
   toggle: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired
 };
 
-export default AppHeader;
+export default injectIntl(AppHeader);

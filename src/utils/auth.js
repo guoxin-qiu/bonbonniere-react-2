@@ -2,7 +2,7 @@ import { AppConstant } from '../constants';
 
 const storage = window.sessionStorage;
 
-const setAuthentication = (username, token) => {
+const setAuthentication = (username, token, locale) => {
   if (!token) {
     throw new Error('Token can not be null.');
   }
@@ -11,7 +11,8 @@ const setAuthentication = (username, token) => {
     AppConstant.USER_INFO_STORAGE_KEY,
     JSON.stringify({
       username,
-      token
+      token,
+      locale
     })
   );
 };
@@ -28,7 +29,8 @@ const retrieveAuthentication = () => {
     }
     return {
       token: '',
-      username: ''
+      username: '',
+      locale: ''
     };
   } catch (ex) {
     throw new Error(ex);
@@ -40,11 +42,13 @@ const isAuthorized = () => retrieveAuthentication().token.length > 0;
 const getToken = () => retrieveAuthentication().token;
 
 const getUsername = () => retrieveAuthentication().username;
+const getLocale = () => retrieveAuthentication().locale;
 
 export default {
   setAuthentication,
   removeAuthentication,
   isAuthorized,
   getToken,
-  getUsername
+  getUsername,
+  getLocale
 };

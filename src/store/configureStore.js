@@ -2,10 +2,12 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import * as Counter from './Counter';
+import * as Locale from './SwitchLocale';
 
 export default function configureStore() {
   const reducers = {
-    counter: Counter.reducer
+    counter: Counter.reducer,
+    locales: Locale.reducer
   };
 
   const middlewares = [];
@@ -23,10 +25,17 @@ export default function configureStore() {
     enhancers.push(window.devToolsExtension());
   }
 
-  const rootReducer = combineReducers({
+  const appReducer = combineReducers({
     ...reducers
   });
 
+  const rootReducer = (state, action) => {
+    if (action.type === 'USER_LOGOUT') {
+      state = undefined;
+    }
+
+    return appReducer(state, action);
+  };
   return createStore(
     rootReducer,
     compose(

@@ -23,11 +23,14 @@ class LoginForm extends React.Component {
         ajax
           .get(API.LOGIN, { username, password })
           .then(res => {
-            console.log(res);
             if (res && res.length > 0) {
               const authInfo = res[0];
               this.setState({ isLoading: true });
-              auth.setAuthentication(authInfo.username, authInfo.token);
+              auth.setAuthentication(
+                authInfo.username,
+                authInfo.token,
+                authInfo.locale
+              );
               message.success('login successed.');
               setTimeout(() => {
                 history.push({ pathname: URL.APP, state: values });

@@ -13,7 +13,6 @@ axios.defaults.withCredentials = true;
 axios.interceptors.request.use(
   config => {
     if (auth.isAuthorized()) {
-      /* eslint no-param-reassign: ["error", { "props": false }] */
       config.headers.Authorization = auth.getToken();
       config.headers['access-token'] = Date.now();
     }
