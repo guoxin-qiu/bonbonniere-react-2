@@ -14,6 +14,7 @@ axios.interceptors.request.use(
   config => {
     if (auth.isAuthorized()) {
       config.headers.Authorization = auth.getToken();
+      config.headers.Locale = auth.getLocale();
       config.headers['access-token'] = Date.now();
     }
     return config;
