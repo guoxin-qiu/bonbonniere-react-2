@@ -35,7 +35,8 @@
     "start": "concurrently \"npm run apiserver\" \"npm run dev\"",
     "lint": "./node_modules/.bin/eslint src/**/*.{js,jsx} --quiet",
     "ldev": "npm run lint && npm run dev",
-    "lstart": "npm run lint && npm run start"
+    "lstart": "npm run lint && npm run start",
+    "precommit": "npm run lint"
   },
   "devDependencies": {
     "babel-plugin-import": "^1.9.1",
@@ -47,6 +48,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^2.7.0",
     "eslint-plugin-react": "^7.11.0",
+    "husky": "^1.1.0",
     "prettier": "^1.14.3",
     "react-app-rewire-less": "^2.1.3",
     "react-app-rewired": "^1.6.2",
